@@ -165,13 +165,15 @@ $di['twig'] = function () use ($di) {
 
 $di['is_client_logged'] = function() use($di) {
     if(!$di['auth']->isClientLoggedIn()) {
-        throw new Exception('Client is not logged in');
+        header("Location: /#login",TRUE,302);
+        throw new Exception('Client is not logged in!');
     }
     return true;
 };
 
 $di['is_admin_logged'] = function() use($di) {
     if(!$di['auth']->isAdminLoggedIn()) {
+        header("Location: /#login",TRUE,302);
         throw new Exception('Admin is not logged in');
     }
     return true;
