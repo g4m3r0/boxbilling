@@ -57,7 +57,8 @@ class Box_AppClient extends Box_App
         } catch(Exception $e) {
             if(BB_DEBUG) error_log($e);
         }
-        throw new \Box_Exception('Page :url not found', array(':url'=>$page), 404);
+        $e = new \Box_Exception('Page :url not found', array(':url'=>$this->url), 404);
+        return $this->show404($e);
     }
 
     /**
